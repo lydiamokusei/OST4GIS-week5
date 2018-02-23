@@ -172,4 +172,78 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
+  //TASK 1 -Labels
+  $("h1#main-heading").text('Crime Hotspots');
+  $("label#text-label1").text('Neighborhood');
+  $("label#text-label2").text('Crime Type');
+  $("label#text-label3").text('Address');
+  $("label#number-label").text('Crime Rates(%)');
+  $("label#checkbox-label1").text('Within a Week');
+  $("label#checkbox-label2").text('Within a Month');
+  $("label#color-label").text('Crime Density');
+
+  //TASK 2 -Inputs
+  $("input#text-input1").val("Magic Gardens");
+  $("input#text-input2").val("Aggregate Assaults");
+  $("input#text-input3").val("301 S Christopher Columbus Blvd, Philadelphia, PA 19106");
+  $("input#numeric-input").val("2.7");
+  $("input#cbox-input1").prop("disabled", false);
+  $("input#cbox-input2").prop("disabled", false);
+  $("input#color-input").val("#FFA500");
+
+
+    //TASK 3 - Object
+  var myObject = function(){
+      var value1 =  $("input#text-input1").val();
+      var value2 =  $("input#text-input2").val();
+      var value3 =  $("input#text-input3").val();
+      var value4 =  $("input#numeric-input").val();
+      var value5 =  $("input#cbox-input1").prop("checked");
+      var value6 =  $("input#cbox-input2").prop("checked");
+      var value7 =  $("input#color-input").val();
+      var newObject = {
+         "Neighborhood":value1,
+         "Crime Type":value2,
+         "Address":value3,
+         "Crime Rates(%)":value4,
+         "Within a Week":value5,
+         "Within a Month":value6,
+         "Crime Density":value7
+         };
+      console.log(newObject);
+      return newObject;
+   };
+
+
+  //TASK 4
+  $('#text-input1').prop('disabled',false);
+  $('#text-input2').prop('disabled',false);
+  $('#text-input3').prop('disabled',false);
+  $('#numeric-input').prop('disabled',false);
+  $('#checkbox-label1').prop('disabled',false);
+  $('#checkbox-label2').prop('disabled',false);
+  $('#color-label').prop('disabled',false);
+
+  //TASK 5
+  $('body > div.sidebar > button').click(function(){
+    myObject();
+    marker();
+    }
+  );
+
+  //Task 6:
+  $('#number-label2').text('Latitude');
+  $('#number-label3').text('Longtitude');
+  $('#numeric-input2').prop('disabled',false);
+  $('#numeric-input3').prop('disabled',false);
+  $('#numeric-input2').val('39.943565');
+  $('#numeric-input3').val('-75.159294');
+  var marker = function(){
+  var numberimput2 =  $('#numeric-input2').val();
+  var numberimput3 =  $('#numeric-input3').val();
+  var textinput1 =   $("input#text-input1").val();
+    L.circleMarker([numberimput2, numberimput3]).addTo(map).bindPopup(textinput1).openPopup();
+};
+
 });
